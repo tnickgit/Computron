@@ -35,8 +35,6 @@ void load_from_file(std::array<int, memorySize>& memory, const std::string& file
         {
             throw std::runtime_error("invalid_input");
         }
-        if (operandNum == 43)
-            break;
     }
 }
 
@@ -176,18 +174,7 @@ void execute(std::array<int, memorySize>& memory,
 }
 
 bool validWord(int word) {
-    return word == static_cast<int>(Command::read) ||
-        word == static_cast<int>(Command::write) ||
-        word == static_cast<int>(Command::load) ||
-        word == static_cast<int>(Command::store) ||
-        word == static_cast<int>(Command::add) ||
-        word == static_cast<int>(Command::subtract) ||
-        word == static_cast<int>(Command::divide) ||
-        word == static_cast<int>(Command::multiply) ||
-        word == static_cast<int>(Command::branch) ||
-        word == static_cast<int>(Command::branchNeg) ||
-        word == static_cast<int>(Command::branchZero) ||
-        word == static_cast<int>(Command::halt);
+    return (word >= minWord && word <= maxWord);
 }
 
 void dump(std::array<int, memorySize>& memory, int accumulator,

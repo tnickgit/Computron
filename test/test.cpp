@@ -10,7 +10,7 @@ TEST_CASE("testing to the load from file function", "[load_from_file][valid]")
 		4206, 4300};
 
 	load_from_file(memoryTest, "test.txt");
-
+	//test the netire space of the memroy
 	for (size_t i = 0; i < memoryTest.size(); i++)
 	{
 		REQUIRE(memoryTest[i] == equalMemory[i]);
@@ -75,21 +75,5 @@ TEST_CASE("Testing to see if the validWord", "[validWord][valid]")
 	REQUIRE(validWord(41));
 	REQUIRE(validWord(42));
 	REQUIRE(validWord(43));
-}
-
-TEST_CASE("Testing to see if the validWord with invalid opcodes", "[validWord][invalid]")
-{
-	REQUIRE_FALSE(validWord(1));
-	REQUIRE_FALSE(validWord(15));
-	REQUIRE_FALSE(validWord(24));
-	REQUIRE_FALSE(validWord(26));
-	REQUIRE_FALSE(validWord(38));
-	REQUIRE_FALSE(validWord(56));
-	REQUIRE_FALSE(validWord(14));
-	REQUIRE_FALSE(validWord(77));
-	REQUIRE_FALSE(validWord(50));
-	REQUIRE_FALSE(validWord(45));
-	REQUIRE_FALSE(validWord(4));
-	REQUIRE_FALSE(validWord(3));
 }
 
