@@ -25,11 +25,9 @@ void load_from_file(std::array<int, memorySize>& memory, const std::string& file
         // Check if the instruction is valid using the validWord function
         // If the instruction is valid, store it in memory at position 'i' and increment 'i'
         // If the instruction is invalid, throw a runtime error with the message "invalid_input"
-        int operandNum = instruction / 100; //get the first two digits in the instruction
-        if (validWord(operandNum))
+        if (validWord(instruction))
         {
-            memory[i] = instruction; // place the instruction in the memroy
-            i++;
+            memory[i++] = instruction; // place the instruction in the memroy
         }
         else
         {
@@ -102,7 +100,7 @@ void execute(std::array<int, memorySize>& memory,
             // Add the value in the accumulator (acPtr) to the value in memory at the location pointed to by 'opPtr' and store the result in 'word'
             word = *acPtr + memory[*opPtr];
             // If the result is valid, store it in the accumulator and increment the instruction counter
-            if ((minWord <= word) && (maxWord >= word))
+            if (validWord(word))
             {
                 *acPtr = word;
             }
@@ -114,9 +112,9 @@ void execute(std::array<int, memorySize>& memory,
             break;
         case Command::subtract:
             // Subtract the value in memory at the location pointed to by 'opPtr' from the value in the accumulator (acPtr) and store the result in 'word'
-            word = memory[*opPtr] - *acPtr;
+            word = *acPtr - memory[*opPtr];
             // If the result is valid, store it in the accumulator and increment the instruction counter
-            if ((minWord <= word) && (maxWord >= word))
+            if (validWord(word))
             {
                 *acPtr = word;
             }
@@ -130,7 +128,7 @@ void execute(std::array<int, memorySize>& memory,
             // as above do it for multiplication
             word = memory[*opPtr] * *acPtr;
             // If the result is valid, store it in the accumulator and increment the instruction counter
-            if ((minWord <= word) && (maxWord >= word))
+            if (validWord(word))
             {
                 *acPtr = word;
             }
@@ -144,7 +142,7 @@ void execute(std::array<int, memorySize>& memory,
             // as above do it for division
             word = *acPtr / memory[*opPtr]; // divide the accumulator by the memory of opPtr
             // If the result is valid, store it in the accumulator and increment the instruction counter
-            if ((minWord <= word) && (maxWord >= word))
+            if (validWord(word))
             {
                 *acPtr = word;
             }
